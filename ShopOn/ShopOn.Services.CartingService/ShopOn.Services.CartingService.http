@@ -1,0 +1,6 @@
+@ShopOn.Services.CartingService_HostAddress = http://localhost:5133
+
+GET {{ShopOn.Services.CartingService_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
