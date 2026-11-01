@@ -1,6 +1,19 @@
 @ShopOn.Services.CartingService_HostAddress = http://localhost:5133
 
-GET {{ShopOn.Services.CartingService_HostAddress}}/weatherforecast/
+
+### POST cartitem
+POST {{ShopOn.Services.CartingService_HostAddress}}/cartitems
+accept: */*
+Content-Type: application/json
+
+{
+  "CartId":"257A05F7-467E-4472-AD02-C427869A3796",
+  "Name":"Test Item 1",
+  "StatusId":"Some Status Id"
+}
+
+### GET cartitems
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/
 Accept: application/json
 
-###
+
