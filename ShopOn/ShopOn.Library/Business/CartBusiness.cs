@@ -29,4 +29,14 @@ public class CartBusiness(IRepository<CartItem> repository,
         await repository.Add(dbCartItem, token);
         await repository.SaveChanges(token);
     }
+
+    public async Task RemoveCartItem(string cartId, string id, CancellationToken token = default)
+    {
+        CartItem? cartItem = await repository.Get(
+            x => x.ExtGuid == id && x.CartId == cartId,
+            token: token);
+
+        repository.Delete(cartItem);
+        await repository.SaveChanges(token);
+    }
 }

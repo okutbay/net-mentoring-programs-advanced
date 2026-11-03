@@ -16,11 +16,19 @@ internal static partial class EndpointRegistrationExtensions
         );
 
         // POST New CartItem
-        app.MapPost("/cartitems",
+        cartItemsGroup.MapPost("",
             async (CartItemDto cartItemDto, ICartBusiness cartItemBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
             {
                 await cartItemBusiness.AddCartItem(cartItemDto, token);
                 return Results.Created($"/cartitems/{cartItemDto.ExtGuid}", cartItemDto);
             }).ExcludeFromDescription();
+
+        // DELETE /cartitems/{id} deletes a seat for a specific cart
+        cartItemsGroup.MapDelete("/{cartid}/{id}",
+            async (string cartid, string id, ICartBusiness cartBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
+            {
+                await cartBusiness.RemoveCartItem(cartid, id, token);
+                return Results.Ok(id);
+            });
     }
 }

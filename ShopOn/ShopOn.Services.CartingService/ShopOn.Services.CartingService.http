@@ -9,6 +9,9 @@ Content-Type: application/json
 {
   "CartId":"257A05F7-467E-4472-AD02-C427869A3796",
   "Name":"Test Item 1",
+  "Image":"x.png",
+  "Price":213.45,
+  "Quantity":5,
   "StatusId":"Some Status Id"
 }
 
@@ -17,3 +20,6 @@ GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/
 Accept: application/json
 
 
+### DELETE /cartitems/{cartid}/{id} deletes a cart item
+DELETE {{ShopOn.Services.CartingService_HostAddress}}/cartitems/257A05F7-467E-4472-AD02-C427869A3796/7a35ace3-f2f2-4023-9e13-597b5668003f/
+Accept: application/json

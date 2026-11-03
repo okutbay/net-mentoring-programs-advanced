@@ -6,4 +6,5 @@ public interface ICartBusiness
 {
     public Task<CartItemDto[]> GetCartItems(CancellationToken token = default);
     public Task AddCartItem(CartItemDto cartItemToAdd, CancellationToken token = default);
+    public Task RemoveCartItem(string cartId, string id, CancellationToken token = default);
 }
