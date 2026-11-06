@@ -2,7 +2,7 @@ using Serilog;
 using ShopOn.Library._3rdParty.AutoMapper;
 using ShopOn.Library.Providers;
 using ShopOn.Library.Providers.Interfaces;
-using ShopOn.WebAPI.Extensions;
+using ShopOn.Services.CartingService.Extensions;
 
 namespace ShopOn.Services.CartingService;
 

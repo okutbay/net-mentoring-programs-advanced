@@ -1,5 +1,4 @@
-﻿//using Castle.DynamicProxy;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using ShopOn.Library.Business;
 using ShopOn.Library.Business.Interfaces;
@@ -9,7 +8,7 @@ using ShopOn.Library.Entities.Carting;
 using ShopOn.Library.Entities.Cataloging;
 using ShopOn.Library.Settings;
 
-namespace ShopOn.WebAPI.Extensions;
+namespace ShopOn.Services.CartingService.Extensions;
 
 internal static class RegistrationExtensions
 {

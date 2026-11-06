@@ -1,7 +1,7 @@
 ﻿using ShopOn.Library.Business.Interfaces;
 using ShopOn.Library.Models.Carting;
 
-namespace ShopOn.WebAPI.Extensions;
+namespace ShopOn.Services.CartingService.Extensions;
 
 internal static partial class EndpointRegistrationExtensions
 {
