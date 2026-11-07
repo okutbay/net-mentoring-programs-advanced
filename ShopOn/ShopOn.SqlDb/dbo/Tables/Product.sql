@@ -1,5 +1,6 @@
 ﻿CREATE TABLE [dbo].[Product] (
     [Id]         INT             IDENTITY (1, 1) NOT NULL,
+    [ExtGuid]    UNIQUEIDENTIFIER NULL, 
     [Name]       NVARCHAR (50)   NULL,
     [Descrption] NVARCHAR (250)  NULL,
     [Image]      VARCHAR (250)   NULL,

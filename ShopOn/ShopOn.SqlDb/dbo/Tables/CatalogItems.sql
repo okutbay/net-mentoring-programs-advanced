@@ -1,7 +1,8 @@
 ﻿CREATE TABLE [dbo].[CatalogItems] (
     [Id]       INT          IDENTITY (1, 1) NOT NULL,
+    [ExtGuid] UNIQUEIDENTIFIER NULL, 
     [StatusId] VARCHAR (50) NULL,
-    [RowVersion] ROWVERSION    NULL,
+    [RowVersion] ROWVERSION    NULL,   
     CONSTRAINT [PK_CatalogItems] PRIMARY KEY CLUSTERED ([Id] ASC)
 );
 
