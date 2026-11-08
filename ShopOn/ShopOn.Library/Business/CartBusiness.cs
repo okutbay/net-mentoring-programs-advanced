@@ -17,6 +17,8 @@ public class CartBusiness(IRepository<CartItem> repository,
 {
     public async Task<CartItemDto[]> GetCartItems(string cartId, CancellationToken token = default)
     {
+        ValidateCartId(cartId);
+
         var cartItems = await repository.GetAll(
             x => x.CartId == cartId,
             token: token);
@@ -74,6 +76,7 @@ public class CartBusiness(IRepository<CartItem> repository,
     public async Task AddCartItem(CartItemDto cartItemToAdd, CancellationToken token = default)
     {
         ValidateCartItemDto(cartItemToAdd);
+        ValidateCartId(cartItemToAdd.CartId);
 
         // Load all items for the cart
         var cartItems = await repository.GetAll(x => x.CartId == cartItemToAdd.CartId, token: token);
@@ -101,6 +104,8 @@ public class CartBusiness(IRepository<CartItem> repository,
 
     public async Task RemoveCartItem(string cartId, string id, CancellationToken token = default)
     {
+        ValidateCartId(cartId);
+
         var cartItems = await repository.GetAll(x => x.CartId == cartId, token: token);
         var cart = new Cart(cartId) { Items = cartItems.ToList() };
 
@@ -124,5 +129,11 @@ public class CartBusiness(IRepository<CartItem> repository,
             var errors = string.Join("; ", results.Select(r => r.ErrorMessage));
             throw new ArgumentException($"Validation failed: {errors}");
         }
+    }
+
+    private void ValidateCartId(string cartId)
+    {
+        if (string.IsNullOrWhiteSpace(cartId))
+            throw new ArgumentException("CartId must be provided and cannot be empty.", nameof(cartId));
     }
 }
