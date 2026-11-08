@@ -9,10 +9,10 @@ internal static partial class EndpointRegistrationExtensions
     {
         var cartItemsGroup = app.MapGroup("cartitems").WithTags("CartItems");
 
-        // GET /cartitems
-        cartItemsGroup.MapGet("",
-            async (ICartBusiness cartBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
-                await cartBusiness.GetCartItems(token)
+        // GET /cartitems/{cartid} gets items of the cart
+        cartItemsGroup.MapGet("/{cartid}",
+            async (string cartid, ICartBusiness cartBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
+                await cartBusiness.GetCartItems(cartid, token)
         );
 
         // POST New CartItem
@@ -23,7 +23,7 @@ internal static partial class EndpointRegistrationExtensions
                 return Results.Created($"/cartitems/{cartItemDto.ExtGuid}", cartItemDto);
             }).ExcludeFromDescription();
 
-        // DELETE /cartitems/{id} deletes a seat for a specific cart
+        // DELETE /cartitems/{id} deletes a cart item
         cartItemsGroup.MapDelete("/{cartid}/{id}",
             async (string cartid, string id, ICartBusiness cartBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
             {

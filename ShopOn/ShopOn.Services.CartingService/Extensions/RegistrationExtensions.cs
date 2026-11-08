@@ -5,7 +5,6 @@ using ShopOn.Library.Business.Interfaces;
 using ShopOn.Library.Data;
 using ShopOn.Library.Data.Interfaces;
 using ShopOn.Library.Entities.Carting;
-using ShopOn.Library.Entities.Cataloging;
 using ShopOn.Library.Settings;
 
 namespace ShopOn.Services.CartingService.Extensions;
@@ -45,16 +44,12 @@ internal static class RegistrationExtensions
         //MongoDbContext
         services.AddScoped<IRepository<CartItem>, Repository<CartItem, MongoDbContext>>();
 
-        //SqlServerDbContext
-        services.AddScoped<IRepository<CatalogItem>, Repository<CatalogItem, SqlServerDbContext>>();
-
         return services;
     }
 
     public static IServiceCollection AddBusinessServices(this IServiceCollection services)
     {
         services.AddScoped<ICartBusiness, CartBusiness>();
-        services.AddScoped<ICatalogBusiness, CatalogBusiness>();
 
         return services;
     }

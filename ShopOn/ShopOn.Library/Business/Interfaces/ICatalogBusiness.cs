@@ -17,11 +17,4 @@ public interface ICatalogBusiness
     public Task AddProduct(ProductDto productToAdd, CancellationToken token = default);
     public Task UpdateProduct(ProductDto productToUpdate, CancellationToken token = default);
     public Task RemoveProduct(string categoryId, CancellationToken token = default);
-
-    // CatalogItem
-    public Task<CatalogItemDto[]> GetCatalogItems(CancellationToken token = default);
-    public Task<CatalogItemDto> GetCatalogItem(string catalogItemId, CancellationToken token = default);
-    public Task AddCatalogItem(CatalogItemDto catalogItemToAdd, CancellationToken token = default);
-    public Task UpdateCatalogItem(CatalogItemDto catalogItemToUpdate, CancellationToken token = default);
-    public Task RemoveCatalogItem(string catalogItemId, CancellationToken token = default);
 }

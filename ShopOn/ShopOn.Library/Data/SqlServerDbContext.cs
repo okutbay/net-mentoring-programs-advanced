@@ -10,7 +10,6 @@ public class SqlServerDbContext : DbContext
 
     }
 
-    public DbSet<CatalogItem> CatalogItems{ get; set; }
     public DbSet<Category> Category { get; set; }
     public DbSet<Product> Product { get; set; }
 

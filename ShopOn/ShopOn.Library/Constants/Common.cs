@@ -1,9 +1,15 @@
 ﻿namespace ShopOn.Library.Constants;
 
-public class Common
+public static class Common
 {
-    public class QueueName
+    public static class QueueName
     {
         public const string CartPaymentNotification = "shopon.cartpaymentnotification";
     }
+
+    public static class Cart
+    {
+        public const int MaxAllowedProductQuantity = 99;
+    }
+
 }

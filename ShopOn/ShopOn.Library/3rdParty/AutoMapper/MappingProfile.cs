@@ -16,10 +16,6 @@ public class MappingProfile : Profile
             .ReverseMap();
 
         // Cataloging
-        CreateMap<CatalogItem, CatalogItemDto>()
-            .ForSourceMember(x => x.Id, opt => opt.DoNotValidate())
-            .ReverseMap();
-
         CreateMap<Category, CategoryDto>()
             .ForSourceMember(x => x.Id, opt => opt.DoNotValidate())
             .ReverseMap();
