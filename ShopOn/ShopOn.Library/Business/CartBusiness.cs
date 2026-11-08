@@ -7,6 +7,7 @@ using ShopOn.Library.Entities.Carting;
 using ShopOn.Library.Exceptions;
 using ShopOn.Library.Models.Carting;
 using ShopOn.Library.Providers.Interfaces;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShopOn.Library.Business;
 
@@ -72,6 +73,8 @@ public class CartBusiness(IRepository<CartItem> repository,
 
     public async Task AddCartItem(CartItemDto cartItemToAdd, CancellationToken token = default)
     {
+        ValidateCartItemDto(cartItemToAdd);
+
         // Load all items for the cart
         var cartItems = await repository.GetAll(x => x.CartId == cartItemToAdd.CartId, token: token);
         var cart = new Cart(cartItemToAdd.CartId) { Items = cartItems.ToList() };
@@ -112,4 +115,14 @@ public class CartBusiness(IRepository<CartItem> repository,
         }
     }
 
+    private void ValidateCartItemDto(CartItemDto dto)
+    {
+        var context = new ValidationContext(dto);
+        var results = new List<ValidationResult>();
+        if (!Validator.TryValidateObject(dto, context, results, true))
+        {
+            var errors = string.Join("; ", results.Select(r => r.ErrorMessage));
+            throw new ArgumentException($"Validation failed: {errors}");
+        }
+    }
 }
