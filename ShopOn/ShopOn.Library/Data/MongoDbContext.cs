@@ -19,11 +19,5 @@ public class MongoDbContext : DbContext
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<CartItem>()
             .ToCollection("cartitems");
-            //.HasNoKey();
-            //.HasKey(x => x.ExtGuid)
-            //.HasName("_id");
-
-            
-
     }  
 }
