@@ -4,7 +4,7 @@ using ShopOn.Library.Data.Interfaces;
 
 namespace ShopOn.Library.Data;
 
-public class Repository<TEntity, TContext>(TContext context) : IRepository<TEntity>, IDisposable
+public class Repository<TEntity, TContext>(TContext context) : IRepository<TEntity>
         where TEntity : class
         where TContext : DbContext
 {
@@ -64,39 +64,5 @@ public class Repository<TEntity, TContext>(TContext context) : IRepository<TEnti
     protected DbSet<TEntity> Set()
     {
         return Context.Set<TEntity>();
-    }
-
-    public async Task<IDisposable> ObtainPessimisticLock(
-        Expression<Func<TEntity, bool>> predicate,
-        CancellationToken token = default)
-    {
-        // Convert the predicate into a query with locking hints
-        var query = Context.Set<TEntity>()
-            .Where(predicate)
-            .ToQueryString();
-
-        var sqlWithLock = query.Replace("FROM", "FROM (SELECT * FROM ")
-                               + " WITH (ROWLOCK, UPDLOCK)) AS T1";
-
-        // Execute raw SQL query to lock the row
-        await Context.Set<TEntity>()
-            .FromSqlRaw(sqlWithLock)
-            .FirstOrDefaultAsync(token);
-
-        // Return a disposable lock object to hold the lock context
-        return new PessimisticLock();
-    }
-
-    public void Dispose()
-    {
-        Context.Dispose();
-    }
-}
-
-public class PessimisticLock : IDisposable
-{
-    public void Dispose()
-    {
-        // Dispose logic (if any cleanup is needed)
     }
 }

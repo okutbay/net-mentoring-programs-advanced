@@ -33,7 +33,4 @@ public interface IRepository<TEntity>
 
     Task<int> SaveChanges(CancellationToken cancellationToken = default);
 
-    Task<IDisposable> ObtainPessimisticLock(
-        Expression<Func<TEntity, bool>> predicate,
-        CancellationToken token = default);
 }
