@@ -35,7 +35,6 @@ public class Cart
                 CartId = CartId,
                 ProductId = dto.ProductId,
                 Name = dto.Name,
-                StatusId = dto.StatusId,
                 Image = dto.Image,
                 Price = dto.Price,
                 Quantity = dto.Quantity,

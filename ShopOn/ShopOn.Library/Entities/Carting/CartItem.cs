@@ -11,8 +11,6 @@ public class CartItem : BaseMongoDbEntity
 
     public string Name { get; set; }
 
-    public string StatusId { get; set; }
-
     public string Image { get; set; }
 
     public decimal Price { get; set; }

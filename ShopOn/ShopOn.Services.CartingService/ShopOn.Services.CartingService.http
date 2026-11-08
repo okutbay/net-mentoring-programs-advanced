@@ -12,8 +12,7 @@ Content-Type: application/json
   "Name":"Test Item 1",
   "Image":"x.png",
   "Price":213.45,
-  "Quantity":5,
-  "StatusId":"Some Status Id"
+  "Quantity":5
 }
 
 ### POST cart 2 cartitem
@@ -27,8 +26,7 @@ Content-Type: application/json
   "Name":"Test Item 2",
   "Image":"x.png",
   "Price":213.45,
-  "Quantity":5,
-  "StatusId":"Some Status Id"
+  "Quantity":5
 }
 
 ### GET cart1 items

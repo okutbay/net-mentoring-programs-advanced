@@ -14,7 +14,6 @@ public class CartItemDto : BaseModel
     [StringLength(100)]
     public string Name { get; set; }
 
-    public string StatusId { get; set; }
     public string Image { get; set; }
 
     [Range(0, double.MaxValue)]
