@@ -29,9 +29,6 @@ public class Program
 
             // Start adding Custom service registrations
 
-            // Register MongoDBContext
-            builder.Services.AddMongoDbContext(builder.Configuration);
-
             // Register SqlDBContext
             builder.Services.AddSqlDbContext(builder.Configuration);
 

@@ -51,7 +51,7 @@ public class CartBusinessTests
             .Returns(Mock.Of<ICacheEntry>);
 
         // Act
-        var result = await _cartBusiness.GetCartItems();
+        var result = await _cartBusiness.GetCartItems("7399284F-C4B9-4E73-ADA6-6F069221D0EE");
 
         // Assert
         Assert.NotNull(result);

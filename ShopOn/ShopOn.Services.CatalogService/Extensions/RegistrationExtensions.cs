@@ -5,7 +5,6 @@ using ShopOn.Library.Business;
 using ShopOn.Library.Business.Interfaces;
 using ShopOn.Library.Data;
 using ShopOn.Library.Data.Interfaces;
-using ShopOn.Library.Entities.Carting;
 using ShopOn.Library.Entities.Cataloging;
 using ShopOn.Library.Settings;
 
@@ -13,19 +12,6 @@ namespace ShopOn.Services.CatalogService.Extensions;
 
 internal static class RegistrationExtensions
 {
-    public static IServiceCollection AddMongoDbContext(this IServiceCollection services, IConfiguration configuration)
-    {
-        // Add services to the container.
-        services.Configure<MongoDbSettings>(configuration.GetSection(MongoDbSettings.Position));
-        services.AddDbContext<MongoDbContext>((sp, options) =>
-        {
-            // MongoDB
-            var settings = sp.GetRequiredService<IOptions<MongoDbSettings>>().Value;
-            options.UseMongoDB(settings.ConnectionString, settings.DatabaseName);
-        });
-        return services;
-    }
-
     public static IServiceCollection AddSqlDbContext(this IServiceCollection services, IConfiguration configuration)
     {
         // Add services to the container.

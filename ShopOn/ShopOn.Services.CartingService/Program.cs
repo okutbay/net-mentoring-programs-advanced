@@ -30,9 +30,6 @@ public class Program
             // Register MongoDBContext
             builder.Services.AddMongoDbContext(builder.Configuration);
 
-            // Register SqlDBContext
-            builder.Services.AddSqlDbContext(builder.Configuration);
-
             // Register data services
             builder.Services.AddPersistanceLayer();
 

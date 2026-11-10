@@ -24,21 +24,6 @@ internal static class RegistrationExtensions
         return services;
     }
 
-    public static IServiceCollection AddSqlDbContext(this IServiceCollection services, IConfiguration configuration)
-    {
-        // Add services to the container.
-        services.Configure<SqlDbSettings>(configuration.GetSection(SqlDbSettings.Position));
-
-        services.AddDbContext<SqlServerDbContext>((sp, options) =>
-        {
-            // SqlServer
-            var settings = sp.GetRequiredService<IOptions<SqlDbSettings>>().Value;
-            options.UseSqlServer(settings.ConnectionString);
-        });
-
-        return services;
-    }
-
     public static IServiceCollection AddPersistanceLayer(this IServiceCollection services)
     {
         //MongoDbContext
