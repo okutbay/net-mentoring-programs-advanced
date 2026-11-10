@@ -26,6 +26,20 @@ public class CartBusiness(IRepository<CartItem> repository,
         return mapper.Map<CartItemDto[]>(cartItems);
     }
 
+    public async Task<CartItemDto> GetCartItem(string cartId, string cartItemId, CancellationToken token = default)
+    {
+        ValidateCartId(cartId);
+
+        var cartItem = await repository.Get(
+            x => x.CartId == cartId && x.ExtGuid == cartItemId,
+            token: token);
+
+        if (cartItem is null)
+            throw new EntityNotFoundException($"Cart item {cartItem.CartId} ({cartItem.ExtGuid}) is not found");
+
+        return mapper.Map<CartItemDto>(cartItem);
+    }
+
     public async Task AddCartItemWithOutCart(CartItemDto cartItemToAdd, CancellationToken token = default)
     {
         // Check if the product already exists in the cart
@@ -118,6 +132,8 @@ public class CartBusiness(IRepository<CartItem> repository,
             repository.Delete(itemToRemove);
             await repository.SaveChanges(token);
         }
+
+        throw new EntityNotFoundException($"Cart item ({cartId}) is not found");
     }
 
     private void ValidateCartItemDto(CartItemDto dto)

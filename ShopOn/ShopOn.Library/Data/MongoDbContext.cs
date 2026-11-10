@@ -9,7 +9,8 @@ public class MongoDbContext : DbContext
 {
     public MongoDbContext(DbContextOptions<MongoDbContext> options) : base(options)
     {
-
+        // Disable automatic transactions
+        this.Database.AutoTransactionBehavior = AutoTransactionBehavior.Never;
     }
 
     public DbSet<CartItemDto> CartItems { get; set; }

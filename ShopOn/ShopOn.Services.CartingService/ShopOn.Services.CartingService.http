@@ -22,7 +22,7 @@ Content-Type: application/json
 
 {
   "CartId":"7399284F-C4B9-4E73-ADA6-6F069221D0EE",
-  "ProductId":"2F9BA542-4975-4C7A-8DE8-4DF4AB15D5EC",
+  "ProductId":"E38617C8-F404-4F1B-AAF8-F86526D4EBE0",
   "Name":"Test Item 2",
   "Image":"x.png",
   "Price":213.45,
@@ -35,6 +35,10 @@ Accept: application/json
 
 ### GET cart2 items
 GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/7399284F-C4B9-4E73-ADA6-6F069221D0EE
+Accept: application/json
+
+### GET cart2 item
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/7399284F-C4B9-4E73-ADA6-6F069221D0EE/b696fa59-e4b7-4778-a107-1e30441fc6a4
 Accept: application/json
 
 ### DELETE /cartitems/{cartid}/{id} deletes a cart item
