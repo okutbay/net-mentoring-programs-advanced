@@ -3,6 +3,7 @@ using ShopOn.Library._3rdParty.AutoMapper;
 using ShopOn.Library.Providers;
 using ShopOn.Library.Providers.Interfaces;
 using ShopOn.Services.CatalogService.Extensions;
+using ShopOn.Services.CatalogService.Middleware;
 
 namespace ShopOn.Services.CatalogService;
 
@@ -46,7 +47,12 @@ public class Program
 
             builder.Services.AddScoped<IGuidProvider, GuidProvider>();
 
+            builder.Services.AddTransient<ErrorHandling>();
+
             var app = builder.Build();
+
+            app.UseMiddleware<Logging>();
+            app.UseMiddleware<ErrorHandling>();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
