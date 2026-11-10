@@ -4,6 +4,8 @@ namespace ShopOn.Library.Models.Cataloging;
 
 public class ProductDto : BaseModel
 {
+    [Required]
+    [StringLength(100)]
     public string Name { get; set; }
 
     public string Description { get; set; }
@@ -12,6 +14,7 @@ public class ProductDto : BaseModel
 
     public string Category { get; set; }
 
+    [Range(0, double.MaxValue)]
     public decimal Price { get; set; }
 
     public int Amount { get; set; }
