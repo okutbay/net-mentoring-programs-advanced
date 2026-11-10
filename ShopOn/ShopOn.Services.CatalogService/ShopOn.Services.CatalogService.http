@@ -1,0 +1,89 @@
+@ShopOn.Services.CatalogService_HostAddress = http://localhost:5023
+
+#######################################################################################################
+### Categories
+
+### POST category
+POST {{ShopOn.Services.CatalogService_HostAddress}}/categories
+accept: */*
+Content-Type: application/json
+
+{
+  "Name":"Test Item 1",
+  "Image":"x.png"
+}
+
+### PUT category
+PUT {{ShopOn.Services.CatalogService_HostAddress}}/categories
+accept: */*
+Content-Type: application/json
+
+{
+  "ExtGuid":"1ecb94de-781c-471c-97d9-459b4c0628b2",
+  "Name":"Test Item 1",
+  "Image":"xx33.png"
+}
+
+### GET categories
+GET {{ShopOn.Services.CatalogService_HostAddress}}/categories/
+Accept: application/json
+
+### GET category
+GET {{ShopOn.Services.CatalogService_HostAddress}}/categories/C9B81263-ADDB-4C8A-9C9A-BD3F8335AFB7/
+Accept: application/json
+
+### DELETE /categories/{id} deletes a cart item
+DELETE {{ShopOn.Services.CatalogService_HostAddress}}/categories/296B0677-7143-4CBC-949A-321EF8C56238/
+Accept: application/json
+
+#######################################################################################################
+
+
+
+#######################################################################################################
+### Products
+
+### POST Product
+POST {{ShopOn.Services.CatalogService_HostAddress}}/products
+accept: */*
+Content-Type: application/json
+
+{
+  "Name":"Test Item 1",
+  "Description":"Test Item 1 Description",
+  "Image":"x.png",
+  "Category":"Some Category",
+  "Price":213.45,
+  "Amount":150
+}
+
+### PUT product
+PUT {{ShopOn.Services.CatalogService_HostAddress}}/products
+accept: */*
+Content-Type: application/json
+
+{
+  "ExtGuid":"7252ef36-e870-4b59-848b-d527ba9ef007",
+  "Name":"Test Item 3",
+  "Description":"Test Item 3 Description",
+  "Image":"xxx333.png",
+  "Category":"Some Category 2",
+  "Price":213.45,
+  "Amount":150
+}
+
+### GET products
+GET {{ShopOn.Services.CatalogService_HostAddress}}/products/
+Accept: application/json
+
+### GET product
+GET {{ShopOn.Services.CatalogService_HostAddress}}/products/fdb30d44-4cb7-42b4-8f66-dddda7ad1047/
+Accept: application/json
+
+### DELETE /products/{id} deletes a cart item
+DELETE {{ShopOn.Services.CatalogService_HostAddress}}/products/7cd09202-1679-47e1-8a26-500afa3cef05/
+Accept: application/json
+
+#######################################################################################################
+
+

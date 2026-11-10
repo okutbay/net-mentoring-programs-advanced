@@ -1,0 +1,46 @@
+@ShopOn.Services.CartingService_HostAddress = http://localhost:5133
+
+
+### POST cart 1 cartitem
+POST {{ShopOn.Services.CartingService_HostAddress}}/cartitems
+accept: */*
+Content-Type: application/json
+
+{
+  "CartId":"257A05F7-467E-4472-AD02-C427869A3796",
+  "ProductId":"06DA991B-6F48-45E4-8D35-D59EA3F03539",
+  "Name":"Test Item 1",
+  "Image":"x.png",
+  "Price":213.45,
+  "Quantity":5
+}
+
+### POST cart 2 cartitem
+POST {{ShopOn.Services.CartingService_HostAddress}}/cartitems
+accept: */*
+Content-Type: application/json
+
+{
+  "CartId":"7399284F-C4B9-4E73-ADA6-6F069221D0EE",
+  "ProductId":"E38617C8-F404-4F1B-AAF8-F86526D4EBE0",
+  "Name":"Test Item 2",
+  "Image":"x.png",
+  "Price":213.45,
+  "Quantity":5
+}
+
+### GET cart1 items
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/257A05F7-467E-4472-AD02-C427869A3796
+Accept: application/json
+
+### GET cart2 items
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/7399284F-C4B9-4E73-ADA6-6F069221D0EE
+Accept: application/json
+
+### GET cart2 item
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/7399284F-C4B9-4E73-ADA6-6F069221D0EE/b696fa59-e4b7-4778-a107-1e30441fc6a4
+Accept: application/json
+
+### DELETE /cartitems/{cartid}/{id} deletes a cart item
+DELETE {{ShopOn.Services.CartingService_HostAddress}}/cartitems/257A05F7-467E-4472-AD02-C427869A3796/7a35ace3-f2f2-4023-9e13-597b5668003f/
+Accept: application/json
