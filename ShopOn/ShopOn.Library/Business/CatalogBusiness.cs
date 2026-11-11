@@ -17,11 +17,23 @@ public class CatalogBusiness(IRepository<Category> repository,
     public async Task<CategoryDto[]> GetCategories(CancellationToken token = default)
     {
         var categories = await repository.GetAll(token);
-        IEnumerable<CategoryDto> categoriesDto = mapper.Map<IEnumerable<CategoryDto>>(categories);
-        CategoryDto[] categoryDtoArray = categoriesDto.ToArray();
+        var categoriesList = categories.ToList();
+        var categoryDtos = mapper.Map<List<CategoryDto>>(categoriesList);
 
-        return categoryDtoArray;
+        // Build hierarchy
+        var categoryDict = categoryDtos.ToDictionary(c => c.Id);
+        foreach (var cat in categoryDtos)
+        {
+            if (!string.IsNullOrEmpty(cat.ParentCategoryId) && categoryDict.TryGetValue(cat.ParentCategoryId, out var parent))
+            {
+                parent.Children.Add(cat);
+            }
+        }
+        // Return only root categories
+        var roots = categoryDtos.Where(c => string.IsNullOrEmpty(c.ParentCategoryId)).ToArray();
+        return roots;
     }
+
 
     public async Task<CategoryDto> GetCategory(string categoryId, CancellationToken token = default)
     {
@@ -37,9 +49,20 @@ public class CatalogBusiness(IRepository<Category> repository,
     {
         Category dbCategory = mapper.Map<Category>(categoryToAdd);
         dbCategory.ExtGuid = guidProvider.GetGuid().ToString();
+
+        // Set parent if provided
+        if (!string.IsNullOrEmpty(categoryToAdd.ParentCategoryId))
+        {
+            var parent = await repository.Get(x => x.ExtGuid == categoryToAdd.ParentCategoryId, token: token);
+            if (parent == null)
+                throw new EntityNotFoundException($"Parent category ({categoryToAdd.ParentCategoryId}) is not found");
+            dbCategory.ParentCategoryId = parent.Id;
+        }
+
         await repository.Add(dbCategory, token);
         await repository.SaveChanges(token);
     }
+
 
     public async Task UpdateCategory(CategoryDto categoryToUpdate, CancellationToken token = default)
     {

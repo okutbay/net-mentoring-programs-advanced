@@ -1,8 +1,10 @@
 ﻿CREATE TABLE [dbo].[Category] (
-    [Id]         INT           IDENTITY (1, 1) NOT NULL,
-    [ExtGuid] CHAR(36) NULL, 
-    [Name]       NVARCHAR (50) NULL,
-    [Image]      VARCHAR (250) NULL,
-    CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED ([Id] ASC)
+    [Id]                INT           IDENTITY (1, 1) NOT NULL,
+    [ExtGuid]           CHAR(36) NULL, 
+    [ParentCategoryId]  INT NULL,
+    [Name]              NVARCHAR (50) NULL,
+    [Image]             VARCHAR (250) NULL,
+    CONSTRAINT [PK_Category] PRIMARY KEY CLUSTERED ([Id] ASC),
+    CONSTRAINT FK_Category_Parent FOREIGN KEY (ParentCategoryId) REFERENCES Category(Id)
 );
 
