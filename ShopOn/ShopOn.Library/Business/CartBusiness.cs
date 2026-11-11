@@ -35,7 +35,7 @@ public class CartBusiness(IRepository<CartItem> repository,
             token: token);
 
         if (cartItem is null)
-            throw new EntityNotFoundException($"Cart item {cartItem.CartId} ({cartItem.ExtGuid}) is not found");
+            throw new EntityNotFoundException($"Cart item {cartId} ({cartItemId}) is not found");
 
         return mapper.Map<CartItemDto>(cartItem);
     }
