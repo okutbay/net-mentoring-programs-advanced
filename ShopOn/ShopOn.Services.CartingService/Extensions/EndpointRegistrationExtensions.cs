@@ -12,13 +12,13 @@ internal static partial class EndpointRegistrationExtensions
 
         // GET /cartitems/{cartid} gets items of the cart
         cartItemsGroup.MapGet("/{cartid}",
-            async (string cartid, ICartBusiness cartBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
+            async (string cartid, ICartBusiness cartBusiness, CancellationToken token) =>
                 await cartBusiness.GetCartItems(cartid, token)
         );
 
         // GET /cartitems/{id} gets a cart item
         cartItemsGroup.MapGet("/{cartid}/{id}",
-            async (string cartid, string id, ICartBusiness cartBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
+            async (string cartid, string id, ICartBusiness cartBusiness, CancellationToken token) =>
             {
                 try
                 {
@@ -34,7 +34,7 @@ internal static partial class EndpointRegistrationExtensions
 
         // POST New CartItem
         cartItemsGroup.MapPost("",
-            async (CartItemDto cartItemDto, ICartBusiness cartItemBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
+            async (CartItemDto cartItemDto, ICartBusiness cartItemBusiness, CancellationToken token) =>
             {
                 await cartItemBusiness.AddCartItem(cartItemDto, token);
                 return Results.Created($"/cartitems/{cartItemDto.CartId}/{cartItemDto.ExtGuid}", cartItemDto);
@@ -42,7 +42,7 @@ internal static partial class EndpointRegistrationExtensions
 
         // DELETE /cartitems/{id} deletes a cart item
         cartItemsGroup.MapDelete("/{cartid}/{id}",
-            async (string cartid, string id, ICartBusiness cartBusiness, ILogger<CartItemDto> logger, CancellationToken token) =>
+            async (string cartid, string id, ICartBusiness cartBusiness, CancellationToken token) =>
             {
                 try
                 {

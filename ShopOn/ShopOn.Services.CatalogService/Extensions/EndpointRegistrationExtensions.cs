@@ -12,19 +12,19 @@ internal static partial class EndpointRegistrationExtensions
 
         // GET /categories
         categoriesGroup.MapGet("",
-            async (ICatalogBusiness catalogBusiness, ILogger<CategoryDto> logger, CancellationToken token) =>
+            async (ICatalogBusiness catalogBusiness, CancellationToken token) =>
                 await catalogBusiness.GetCategories(token)
         );
 
         // GET /categories/{categoryid}
         categoriesGroup.MapGet("/{categoryid}",
-            async (string categoryid, ICatalogBusiness catalogBusiness, ILogger<CategoryDto> logger, CancellationToken token) =>
+            async (string categoryid, ICatalogBusiness catalogBusiness, CancellationToken token) =>
                 await catalogBusiness.GetCategory(categoryid, token)
         );
 
         // POST New Category
         categoriesGroup.MapPost("",
-            async (CategoryDto categoryDto, ICatalogBusiness catalogBusiness, ILogger<CategoryDto> logger, CancellationToken token) =>
+            async (CategoryDto categoryDto, ICatalogBusiness catalogBusiness, CancellationToken token) =>
             {
                 await catalogBusiness.AddCategory(categoryDto, token);
                 return Results.Created($"/categories/{categoryDto.ExtGuid}", categoryDto);
@@ -32,7 +32,7 @@ internal static partial class EndpointRegistrationExtensions
 
         // PUT Update Category
         categoriesGroup.MapPut("",
-            async (CategoryDto categoryDto, ICatalogBusiness catalogBusiness, ILogger<CategoryDto> logger, CancellationToken token) =>
+            async (CategoryDto categoryDto, ICatalogBusiness catalogBusiness, CancellationToken token) =>
             {
                 await catalogBusiness.UpdateCategory(categoryDto, token);
                 return Results.Ok($"/categories/{categoryDto.ExtGuid}");
@@ -41,7 +41,7 @@ internal static partial class EndpointRegistrationExtensions
 
         // DELETE /categories/{id} deletes a category
         categoriesGroup.MapDelete("/{categoryid}",
-            async (string categoryid, ICatalogBusiness catalogBusiness, ILogger<CategoryDto> logger, CancellationToken token) =>
+            async (string categoryid, ICatalogBusiness catalogBusiness, CancellationToken token) =>
             {
                 await catalogBusiness.RemoveCategory(categoryid, token);
                 return Results.Ok(categoryid);
@@ -54,19 +54,19 @@ internal static partial class EndpointRegistrationExtensions
 
         // GET /products
         productsGroup.MapGet("",
-            async (ICatalogBusiness catalogBusiness, ILogger<ProductDto> logger, CancellationToken token) =>
+            async (ICatalogBusiness catalogBusiness, CancellationToken token) =>
                 await catalogBusiness.GetProducts(token)
         );
 
         // GET /products/{productid}
         productsGroup.MapGet("/{productid}",
-            async (string productid, ICatalogBusiness catalogBusiness, ILogger<ProductDto> logger, CancellationToken token) =>
+            async (string productid, ICatalogBusiness catalogBusiness, CancellationToken token) =>
                 await catalogBusiness.GetProduct(productid, token)
         );
 
         // POST New Product
         productsGroup.MapPost("",
-            async (ProductDto productDto, ICatalogBusiness catalogBusiness, ILogger<ProductDto> logger, CancellationToken token) =>
+            async (ProductDto productDto, ICatalogBusiness catalogBusiness, CancellationToken token) =>
             {
                 await catalogBusiness.AddProduct(productDto, token);
                 return Results.Created($"/products/{productDto.ExtGuid}", productDto);
@@ -74,7 +74,7 @@ internal static partial class EndpointRegistrationExtensions
 
         // PUT Update Product
         productsGroup.MapPut("",
-            async (ProductDto productDto, ICatalogBusiness catalogBusiness, ILogger<ProductDto> logger, CancellationToken token) =>
+            async (ProductDto productDto, ICatalogBusiness catalogBusiness, CancellationToken token) =>
             {
                 await catalogBusiness.UpdateProduct(productDto, token);
                 return Results.Ok($"/products/{productDto.ExtGuid}");
@@ -82,7 +82,7 @@ internal static partial class EndpointRegistrationExtensions
 
         // DELETE /products/{id} deletes a Product
         productsGroup.MapDelete("/{productid}",
-            async (string productid, ICatalogBusiness catalogBusiness, ILogger<ProductDto> logger, CancellationToken token) =>
+            async (string productid, ICatalogBusiness catalogBusiness, CancellationToken token) =>
             {
                 await catalogBusiness.RemoveProduct(productid, token);
                 return Results.Ok(productid);
