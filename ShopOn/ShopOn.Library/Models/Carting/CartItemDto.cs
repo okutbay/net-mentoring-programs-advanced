@@ -21,7 +21,4 @@ public class CartItemDto : BaseModel
 
     [Range(1, 99)]
     public int Quantity { get; set; }
-
-    [Timestamp]
-    public byte[] RowVersion { get; set; }
 }

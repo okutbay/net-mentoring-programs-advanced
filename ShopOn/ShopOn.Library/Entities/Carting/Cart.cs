@@ -38,7 +38,6 @@ public class Cart
                 Image = dto.Image,
                 Price = dto.Price,
                 Quantity = dto.Quantity,
-                RowVersion = dto.RowVersion
             };
             Items.Add(newItem);
         }

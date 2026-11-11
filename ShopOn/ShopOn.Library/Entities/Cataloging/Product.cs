@@ -15,7 +15,4 @@ public class Product : BaseSqlEntity
     public decimal Price { get; set; }
 
     public int Amount { get; set; }
-
-    [Timestamp]
-    public byte[] RowVersion { get; set; }
 }

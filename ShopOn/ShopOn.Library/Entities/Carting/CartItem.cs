@@ -16,7 +16,4 @@ public class CartItem : BaseMongoDbEntity
     public decimal Price { get; set; }
 
     public int Quantity { get; set; }
-
-    [Timestamp]
-    public byte[] RowVersion { get; set; }
 }

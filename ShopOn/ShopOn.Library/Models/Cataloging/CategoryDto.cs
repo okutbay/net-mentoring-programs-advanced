@@ -7,7 +7,4 @@ public class CategoryDto : BaseModel
     public string Name { get; set; }
 
     public string Image { get; set; }
-
-    [Timestamp]
-    public byte[] RowVersion { get; set; }
 }
