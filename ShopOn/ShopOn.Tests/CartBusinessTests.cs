@@ -15,18 +15,14 @@ namespace ShopOn.Tests;
 public class CartBusinessTests
 {
     private readonly Mock<IRepository<CartItem>> _mockRepository;
-    private readonly Mock<ILogger<CartItem>> _mockLogger;
     private readonly Mock<IMapper> _mockMapper;
-    private readonly Mock<IMemoryCache> _mockMemoryCache;
     private readonly CartBusiness _cartBusiness;
     private readonly IGuidProvider _guidProvider;
 
     public CartBusinessTests()
     {
         _mockRepository = new Mock<IRepository<CartItem>>();
-        _mockLogger = new Mock<ILogger<CartItem>>();
         _mockMapper = new Mock<IMapper>();
-        _mockMemoryCache = new Mock<IMemoryCache>();
         _guidProvider = new GuidProviderUnitTest(Guid.NewGuid());
         _cartBusiness = new CartBusiness(_mockRepository.Object, 
             _guidProvider, 
@@ -46,9 +42,6 @@ public class CartBusinessTests
 
         _mockRepository.Setup(x => x.GetAll(It.IsAny<CancellationToken>())).ReturnsAsync(cartItems);
         _mockMapper.Setup(x => x.Map<IEnumerable<CartItemDto>>(It.IsAny<IEnumerable<CartItem>>())).Returns(cartItemsDto);
-        _mockMemoryCache
-            .Setup(x => x.CreateEntry(It.IsAny<object>()))
-            .Returns(Mock.Of<ICacheEntry>);
 
         // Act
         var result = await _cartBusiness.GetCartItems("7399284F-C4B9-4E73-ADA6-6F069221D0EE");
