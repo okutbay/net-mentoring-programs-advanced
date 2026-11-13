@@ -12,6 +12,9 @@ public class ProductDto : BaseModel
 
     public string Image { get; set; }
 
+    [Required]
+    public string CategoryId { get; set; }
+
     public string Category { get; set; }
 
     [Range(0, double.MaxValue)]

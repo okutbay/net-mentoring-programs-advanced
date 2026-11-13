@@ -109,17 +109,32 @@ public class CatalogBusiness(IRepository<Category> repository,
             x => x.ExtGuid == productId,
             tracked: false,
             token: token);
+
+        if (product != null)
+        {
+            product.Category = await repository.Get(
+                x => x.Id == product.CategoryId,
+                token: token);
+        }
+
         ProductDto productDto = mapper.Map<ProductDto>(product);
         return productDto;
     }
 
     public async Task AddProduct(ProductDto productToAdd, CancellationToken token = default)
     {
+        // Validate category exists
+        var category = await repository.Get(x => x.ExtGuid == productToAdd.CategoryId, token: token);
+        if (category == null)
+            throw new EntityNotFoundException($"Category ({productToAdd.CategoryId}) is not found");
+
         Product dbProduct = mapper.Map<Product>(productToAdd);
-        dbProduct.ExtGuid = guidProvider.GetGuid().ToString();
+        dbProduct.CategoryId = category.Id;
+
         await repositoryProduct.Add(dbProduct, token);
         await repositoryProduct.SaveChanges(token);
     }
+
 
     public async Task UpdateProduct(ProductDto productToUpdate, CancellationToken token = default)
     {
@@ -133,7 +148,6 @@ public class CatalogBusiness(IRepository<Category> repository,
         dbProduct.Name = productToUpdate.Name;
         dbProduct.Description = productToUpdate.Description;
         dbProduct.Image = productToUpdate.Image;
-        dbProduct.Category = productToUpdate.Category;
         dbProduct.Price = productToUpdate.Price;
         dbProduct.Amount = productToUpdate.Amount;
 

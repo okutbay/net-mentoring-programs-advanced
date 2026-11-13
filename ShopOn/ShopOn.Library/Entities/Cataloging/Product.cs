@@ -10,7 +10,9 @@ public class Product : BaseSqlEntity
 
     public string Image { get; set; }
 
-    public string Category { get; set; }
+    [Required]
+    public int CategoryId { get; set; }
+    public Category Category { get; set; }
 
     public decimal Price { get; set; }
 

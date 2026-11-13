@@ -24,7 +24,11 @@ public class MappingProfile : Profile
             .ForMember(dest => dest.Children, opt => opt.Ignore());
 
         CreateMap<Product, ProductDto>()
-            .ForSourceMember(x => x.Id, opt => opt.DoNotValidate())
-            .ReverseMap();
+            .ForMember(dest => dest.Category, opt => opt.MapFrom(src => src.Category != null ? src.Category.Name : null))
+            .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category != null ? src.Category.ExtGuid : null));
+        CreateMap<ProductDto, Product>()
+            .ForMember(dest => dest.CategoryId, opt => opt.Ignore())
+            .ForMember(dest => dest.Category, opt => opt.Ignore());
+
     }
 }
