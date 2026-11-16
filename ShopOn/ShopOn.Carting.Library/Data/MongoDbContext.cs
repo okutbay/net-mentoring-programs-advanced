@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using MongoDB.EntityFrameworkCore.Extensions;
 using ShopOn.Carting.Library.Entities;
-using ShopOn.Carting.Library.Models;
 
 namespace ShopOn.Carting.Library.Data;
 
