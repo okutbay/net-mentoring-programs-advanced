@@ -7,11 +7,41 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="16.2.0" />
+    <Compile Remove="3rdParty\AutoMapper\**" />
+    <Compile Remove="Business\**" />
+    <Compile Remove="Entities\Carting\**" />
+    <Compile Remove="Entities\Cataloging\**" />
+    <Compile Remove="Models\Carting\**" />
+    <Compile Remove="Models\Cataloging\**" />
+    <EmbeddedResource Remove="3rdParty\AutoMapper\**" />
+    <EmbeddedResource Remove="Business\**" />
+    <EmbeddedResource Remove="Entities\Carting\**" />
+    <EmbeddedResource Remove="Entities\Cataloging\**" />
+    <EmbeddedResource Remove="Models\Carting\**" />
+    <EmbeddedResource Remove="Models\Cataloging\**" />
+    <None Remove="3rdParty\AutoMapper\**" />
+    <None Remove="Business\**" />
+    <None Remove="Entities\Carting\**" />
+    <None Remove="Entities\Cataloging\**" />
+    <None Remove="Models\Carting\**" />
+    <None Remove="Models\Cataloging\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Data\MongoDbContext.cs" />
+    <Compile Remove="Data\SqlServerDbContext.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.22" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.22" />
     <PackageReference Include="MongoDB.Driver" Version="3.13.0" />
     <PackageReference Include="MongoDB.EntityFrameworkCore" Version="9.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="3rdParty\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 
 </Project>
