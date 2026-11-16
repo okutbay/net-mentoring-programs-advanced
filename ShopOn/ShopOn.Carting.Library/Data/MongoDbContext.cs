@@ -13,7 +13,7 @@ public class MongoDbContext : DbContext
         this.Database.AutoTransactionBehavior = AutoTransactionBehavior.Never;
     }
 
-    public DbSet<CartItemDto> CartItems { get; set; }
+    public DbSet<CartItem> CartItems { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
