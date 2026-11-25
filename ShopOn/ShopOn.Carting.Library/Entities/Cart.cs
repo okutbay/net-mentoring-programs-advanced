@@ -30,7 +30,7 @@ public class Cart
         {
             var newItem = new CartItem
             {
-                Id = ObjectId.GenerateNewId(),
+                Id = ObjectId.Parse(dto.Id),
                 ExtGuid = dto.ExtGuid,
                 CartId = CartId,
                 ProductId = dto.ProductId,
