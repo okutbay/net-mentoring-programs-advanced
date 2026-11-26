@@ -123,6 +123,11 @@ public class CartBusiness(IRepository<CartItem> repository,
         var cartItems = await repository.GetAll(x => x.CartId == cartId, token: token);
         var cart = new Cart(cartId) { Items = cartItems.ToList() };
 
+        if (cart == null)
+        {
+            throw new EntityNotFoundException($"item ({id}) is not found");
+        }
+
         cart.RemoveItem(id);
 
         // Remove from repository
@@ -131,9 +136,7 @@ public class CartBusiness(IRepository<CartItem> repository,
         {
             repository.Delete(itemToRemove);
             await repository.SaveChanges(token);
-        }
-
-        throw new EntityNotFoundException($"Cart item ({cartId}) is not found");
+        }      
     }
 
     private void ValidateCartItemDto(CartItemDto dto)
