@@ -1,0 +1,67 @@
+@ShopOn.Services.CartingService_HostAddress = http://localhost:5133
+
+
+### POST cart 1 cartitem
+POST {{ShopOn.Services.CartingService_HostAddress}}/cartitems
+accept: */*
+Content-Type: application/json
+
+{
+  "CartId":"257A05F7-467E-4472-AD02-C427869A3796",
+  "ProductId":1,
+  "Name":"Test Item 1",
+  "Image":"x.png",
+  "Price":213.45,
+  "Quantity":5
+}
+
+### POST cart 2 new cartitem
+POST {{ShopOn.Services.CartingService_HostAddress}}/cartitems
+accept: */*
+Content-Type: application/json
+
+{
+  "ExtGuid":"C64F3308-E716-4FC6-B6A8-27B02466EFF5",
+  "CartId":"7399284F-C4B9-4E73-ADA6-6F069221D0EE",
+  "ProductId":8,
+  "Name":"Test Item 2",
+  "Image":"x.png",
+  "Price":213.45,
+  "Quantity":5
+}
+
+### POST cart 2 existing cartitem
+POST {{ShopOn.Services.CartingService_HostAddress}}/cartitems
+accept: */*
+Content-Type: application/json
+
+{
+  "Id":"6b07837bee2f36b581d38532",
+  "ExtGuid":"C64F3308-E716-4FC6-B6A8-27B02466EFF5",
+  "CartId":"7399284F-C4B9-4E73-ADA6-6F069221D0EE",
+  "ProductId":8,
+  "Name":"Test Item 2",
+  "Image":"x.png",
+  "Price":213.45,
+  "Quantity":15
+}
+
+### GET cart1 items
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/257A05F7-467E-4472-AD02-C427869A3796
+Accept: application/json
+
+### GET cart2 items
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/7399284F-C4B9-4E73-ADA6-6F069221D0EE
+Accept: application/json
+
+### GET cart2 item
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/7399284F-C4B9-4E73-ADA6-6F069221D0EE/b696fa59-e4b7-4778-a107-1e30441fc6a4
+Accept: application/json
+
+### GET not existed
+GET {{ShopOn.Services.CartingService_HostAddress}}/cartitems/b696fa59-e4b7-4778-a107-1e30441fc6a4/7399284F-C4B9-4E73-ADA6-6F069221D0EE
+Accept: application/json
+
+### DELETE /cartitems/{cartid}/{id} deletes a cart item
+DELETE {{ShopOn.Services.CartingService_HostAddress}}/cartitems/257A05F7-467E-4472-AD02-C427869A3796/7a35ace3-f2f2-4023-9e13-597b5668003f/
+Accept: application/json
