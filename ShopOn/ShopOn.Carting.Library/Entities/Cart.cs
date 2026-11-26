@@ -13,7 +13,7 @@ public class Cart
         CartId = cartId;
     }
 
-    public CartItem? FindItem(string productId) =>
+    public CartItem? FindItem(int productId) =>
         Items.FirstOrDefault(i => i.ProductId == productId);
 
     public void AddOrUpdateItem(CartItemDto dto, int maxQuantity)

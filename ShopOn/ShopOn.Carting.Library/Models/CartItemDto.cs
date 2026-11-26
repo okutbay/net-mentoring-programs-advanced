@@ -9,7 +9,7 @@ public class CartItemDto : BaseModel
     public string CartId { get; set; }
 
     [Required]
-    public string ProductId { get; set; }
+    public int ProductId { get; set; }
 
     [Required]
     [StringLength(100)]

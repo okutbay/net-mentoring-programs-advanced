@@ -8,7 +8,7 @@ public class CartItem : BaseMongoDbEntity
     public string CartId { get; set; }
 
     // ExtGuid of Product
-    public string ProductId { get; set; }
+    public int ProductId { get; set; }
 
     public string Name { get; set; }
 
