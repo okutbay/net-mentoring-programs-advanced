@@ -28,7 +28,11 @@ Content-Type: application/json
 GET {{ShopOn.Services.CatalogService_HostAddress}}/categories/
 Accept: application/json
 
-### GET category
+### GET category with child
+GET {{ShopOn.Services.CatalogService_HostAddress}}/categories/1ECB94DE-781C-471C-97D9-459B4C0628B2/
+Accept: application/json
+
+### GET category with no child
 GET {{ShopOn.Services.CatalogService_HostAddress}}/categories/C9B81263-ADDB-4C8A-9C9A-BD3F8335AFB7/
 Accept: application/json
 
@@ -52,7 +56,7 @@ Content-Type: application/json
   "Name":"Test Item 1",
   "Description":"Test Item 1 Description",
   "Image":"x.png",
-  "Category":"Some Category",
+  "CategoryId":1,
   "Price":213.45,
   "Amount":150
 }
@@ -67,7 +71,7 @@ Content-Type: application/json
   "Name":"Test Item 3",
   "Description":"Test Item 3 Description",
   "Image":"xxx333.png",
-  "Category":"Some Category 2",
+  "CategoryId":2,
   "Price":213.45,
   "Amount":150
 }

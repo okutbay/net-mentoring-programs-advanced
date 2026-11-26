@@ -1,4 +1,5 @@
-﻿using ShopOn.Library.Models;
+﻿using ShopOn.Catalog.Library.Entities;
+using ShopOn.Library.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace ShopOn.Catalog.Library.Models;
@@ -18,8 +19,7 @@ public class ProductDto : BaseModel
     [Required]
     public string CategoryId { get; set; }
 
-    [StringLength(100)]
-    public string Category { get; set; }
+    public CategoryDto Category { get; set; }
 
     [Range(0, double.MaxValue, ErrorMessage = "Price must be non-negative.")]
     public decimal Price { get; set; }
