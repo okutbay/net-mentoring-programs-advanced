@@ -8,25 +8,42 @@ Content-Type: application/json
 
 {
   "CartId":"257A05F7-467E-4472-AD02-C427869A3796",
-  "ProductId":"06DA991B-6F48-45E4-8D35-D59EA3F03539",
+  "ProductId":1,
   "Name":"Test Item 1",
   "Image":"x.png",
   "Price":213.45,
   "Quantity":5
 }
 
-### POST cart 2 cartitem
+### POST cart 2 new cartitem
 POST {{ShopOn.Services.CartingService_HostAddress}}/cartitems
 accept: */*
 Content-Type: application/json
 
 {
+  "ExtGuid":"C64F3308-E716-4FC6-B6A8-27B02466EFF5",
   "CartId":"7399284F-C4B9-4E73-ADA6-6F069221D0EE",
-  "ProductId":"E38617C8-F404-4F1B-AAF8-F86526D4EBE0",
+  "ProductId":8,
   "Name":"Test Item 2",
   "Image":"x.png",
   "Price":213.45,
   "Quantity":5
+}
+
+### POST cart 2 existing cartitem
+POST {{ShopOn.Services.CartingService_HostAddress}}/cartitems
+accept: */*
+Content-Type: application/json
+
+{
+  "Id":"6b07837bee2f36b581d38532",
+  "ExtGuid":"C64F3308-E716-4FC6-B6A8-27B02466EFF5",
+  "CartId":"7399284F-C4B9-4E73-ADA6-6F069221D0EE",
+  "ProductId":8,
+  "Name":"Test Item 2",
+  "Image":"x.png",
+  "Price":213.45,
+  "Quantity":15
 }
 
 ### GET cart1 items

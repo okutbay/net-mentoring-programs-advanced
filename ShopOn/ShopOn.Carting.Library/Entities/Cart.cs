@@ -1,6 +1,7 @@
 using MongoDB.Bson;
 using ShopOn.Library.Exceptions;
 using ShopOn.Carting.Library.Models;
+using ShopOn.Library.Extensions;
 
 namespace ShopOn.Carting.Library.Entities;
 public class Cart
@@ -30,7 +31,7 @@ public class Cart
         {
             var newItem = new CartItem
             {
-                Id = ObjectId.Parse(dto.Id),
+                Id = ObjectId.Empty, // it will be assigned later
                 ExtGuid = dto.ExtGuid,
                 CartId = CartId,
                 ProductId = dto.ProductId,
